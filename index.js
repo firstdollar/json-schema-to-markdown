@@ -156,6 +156,11 @@ function generatePropertySection(octothorpes, schema, subSchemas) {
 			return '* `' + getActualType(innerSchema, subSchemas) + '`'
 		}).join('\n')
 		return ['This property must be one of the following types:', oneOfList]
+	} else if (schema.enum) {
+		var enumList = schema.enum.map(function(enumItem) {
+			return '* `' + enumItem + '`'
+		}).join('\n')
+		return ['This element must be one of the following enum values:', enumList]
 	} else {
 		return []
 	}
